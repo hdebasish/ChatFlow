@@ -8,7 +8,6 @@ import { logout } from "../../redux/reducers/authReducer";
 import { useEffect } from "react";
 import { setParams } from "../../utils/helper";
 import { useLocation } from "react-router-dom";
-import { dashboardActions } from "../../redux/reducers/dashboardReducer";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,7 +32,7 @@ export default function Dashboard() {
         Cookies.set("filters", JSON.stringify(filters), { expires: 7 });
         setParams(filters, navigate);
 
-    }, []);
+    }, [location.search, navigate]);
 
     useEffect(() => {
 
@@ -42,8 +41,8 @@ export default function Dashboard() {
             setParams(filter, navigate);
         }
 
-    }, [filter]);
-
+    }, [filter, navigate]);
+    
     const handleCopyLink = () => {
         navigator.clipboard.writeText(window.location.href);
         toast.success('Link copied to clipboard', {
