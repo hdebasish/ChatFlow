@@ -29,7 +29,6 @@ export const signUpUser = async (name, email, password) => {
 export const logoutUser = async () => {
     try {
         const response = await api.post('api/dashboard/logout');
-        console.log(response.data)
         return response.data;
     } catch (error) {
         throw error;
